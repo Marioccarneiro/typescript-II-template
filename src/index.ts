@@ -6,19 +6,37 @@ Crie um sistema de cadastro de usuários que contenha:
 3. Crie exemplos de usuários Admin e Normal;
 */
 
+type TPerson = {
+    id: string,
+    name: string,
+    email: string,
+    password: string
+}
 
+enum USE_ROLE {
+    ADMIN = "admin",
+    NORMAL = "normal"
+}
 
+type AdminAccount = {
+    account: string,
+    permission: USE_ROLE.ADMIN
+}
 
+type NormalAccount = {
+    account: string,
+    permission: USE_ROLE.NORMAL
+}
 
+const userAdmin:AdminAccount = {
+    account: "Mario",
+    permission: USE_ROLE.ADMIN
+}
 
-
-
-
-
-
-
-
-
+const userNormal:NormalAccount = {
+    account: "Felipe",
+    permission: USE_ROLE.NORMAL
+}
 
 
 /* PRÁTICA GUIADA - Parte 2
@@ -29,3 +47,28 @@ Vamos continuar nosso sistema de cadastro de usuários criando:
 3. Um array de usuários que permite guardar apenas usuários do tipo Person + Role;
 
 */ 
+
+type AdminUser = TPerson & AdminAccount
+type NormalUser = TPerson & NormalAccount
+
+const userComum:NormalUser = {
+    id: "001",
+    name: "Mario",
+    email: "mario@email.com",
+    password:"123456",
+    account: "admin",
+    permission: USE_ROLE.NORMAL,   
+}
+
+const userAdm:AdminUser = {
+    id: "001",
+    name: "Mario",
+    email: "mario@email.com",
+    password:"123456",
+    account: "admin",
+    permission: USE_ROLE.ADMIN,   
+}
+
+const users: Array<AdminUser | NormalUser> = []
+
+console.table(users)
